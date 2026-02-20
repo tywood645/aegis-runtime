@@ -180,8 +180,14 @@ async fn main() -> Result<()> {
     info!("listening on {}", socket_path.display());
     loop {
         match listener.accept().await {
-            Ok((stream, _)) => { if let Err(e) = handle_conn(stream, &mut daemon).await { error!("conn error: {}", e); } }
-            Err(e) => { error!("accept error: {}", e); }
+            Ok((stream, _)) => {
+                if let Err(e) = handle_conn(stream, &mut daemon).await {
+                    error!("conn error: {}", e);
+                }
+            }
+            Err(e) => {
+                error!("accept error: {}", e);
+            }
         }
     }
 }
