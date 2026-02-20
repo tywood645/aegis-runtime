@@ -1,0 +1,23 @@
+[package]
+name = "aegisd"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "AEGIS daemon - agent lifecycle and policy enforcement"
+
+[[bin]]
+name = "aegisd"
+path = "src/main.rs"
+
+[dependencies]
+aegis-ads = { path = "../aegis-ads" }
+aegis-sandbox = { path = "../aegis-sandbox" }
+aegis-audit = { path = "../aegis-audit" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+tokio = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }

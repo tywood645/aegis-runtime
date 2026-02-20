@@ -1,0 +1,15 @@
+[package]
+name = "aegis-ads"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Agent Definition Spec (ADS) parser for AEGIS"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+thiserror = { workspace = true }
+globset = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }

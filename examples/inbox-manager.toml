@@ -1,0 +1,59 @@
+[agent]
+name = "inbox-manager"
+version = "1.0.0"
+framework = "openclaw"
+runtime = "python3.12"
+model = "claude-sonnet-4-5"
+owner = "tyler@example.com"
+restart_policy = "on-failure"
+max_runtime = "4h"
+trust_level = "untrusted"
+
+[capabilities.filesystem]
+read = ["/home/user/mail/**", "/tmp/aegis/inbox-manager/**"]
+write = ["/tmp/aegis/inbox-manager/**"]
+deny = ["/etc/**", "/home/user/.ssh/**", "**/*.key", "**/*.pem", "**/*.env"]
+
+[capabilities.network]
+allow_egress = ["https://api.anthropic.com:443", "https://imap.gmail.com:993", "https://smtp.gmail.com:587"]
+deny_egress = ["*"]
+allow_ingress = false
+dns_policy = "restricted"
+
+[capabilities.exec]
+allow = ["python3"]
+deny = ["bash", "sh", "zsh", "nc", "ncat", "wget", "curl", "ssh", "scp"]
+allow_subprocess = false
+allow_dynamic_code = true
+
+[capabilities.api.gmail]
+scopes = ["read", "send"]
+rate_limit = "60/hour"
+
+[capabilities.api.calendar]
+scopes = ["read"]
+rate_limit = "30/hour"
+
+[resources]
+cpu_shares = 256
+memory_limit = "512M"
+memory_swap = "512M"
+io_weight = 100
+pids_limit = 64
+tmp_size = "256M"
+
+[audit]
+log_level = "actions"
+retention = "90d"
+hash_chain = true
+export = ["file"]
+
+[checkpoint]
+interval = "30m"
+max_snapshots = 10
+before_high_risk = true
+rollback_triggers = ["deny_violation_count > 5", "credential_access_attempt"]
+
+[compliance]
+frameworks = ["soc2", "cmmc-l2"]
+review_interval = "30d"

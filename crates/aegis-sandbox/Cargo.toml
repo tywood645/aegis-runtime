@@ -1,0 +1,19 @@
+[package]
+name = "aegis-sandbox"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Linux namespace sandbox provisioner for AEGIS"
+
+[dependencies]
+aegis-ads = { path = "../aegis-ads" }
+aegis-audit = { path = "../aegis-audit" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+nix = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+globset = { workspace = true }
