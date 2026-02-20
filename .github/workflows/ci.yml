@@ -31,5 +31,5 @@ jobs:
         run: |
           for spec in examples/*.toml; do
             echo "Validating $spec..."
-            cargo run -- validate "$spec"
+            cargo run --bin aegis -- validate "$spec"
           done
