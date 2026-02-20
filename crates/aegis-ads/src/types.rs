@@ -102,7 +102,7 @@ impl Default for NetworkCapabilities {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+
 #[serde(rename_all = "lowercase")]
 pub enum DnsPolicy { Restricted, Open }
 
@@ -153,13 +153,9 @@ pub struct SkillsCapabilities {
     pub skill_sandbox: SkillSandboxLevel,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
 #[serde(rename_all = "lowercase")]
-pub enum SkillSandboxLevel { None, Basic, Strict }
-
-impl Default for SkillSandboxLevel {
-    fn default() -> Self { Self::Strict }
-}
+pub enum SkillSandboxLevel { None, Basic, #[default] Strict }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ResourceLimits {
